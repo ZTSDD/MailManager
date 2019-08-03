@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "_MailView";
+}
+
+@{
+    foreach (var mail in Model.Mails)
+    {
+        <tr>
+            <td>@mail.Id</td>
+            <td>@mail.Country</td>
+            <td>@mail.City</td>
+            <td>@mail.Street</td>
+            <td>@mail.HouseNumber</td>
+            <td>@mail.MailIndex</td>
+            <td>@mail.DateTime</td>
+        </tr>
+    }
+}

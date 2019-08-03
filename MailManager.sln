@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailManager", "MailManager\MailManager.csproj", "{1EB4B854-784F-48C4-B098-653956656764}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1EB4B854-784F-48C4-B098-653956656764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EB4B854-784F-48C4-B098-653956656764}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EB4B854-784F-48C4-B098-653956656764}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EB4B854-784F-48C4-B098-653956656764}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA7D9AD1-8361-4A0C-9465-2C3260AD2941}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,145 @@
+﻿@{
+    Layout = "_Layout";
+}
+@model MailListViewModel
+<h1>Почтовые адреса</h1>
+<button name="btn"
+        type="submit"
+        class="btn btn-primary pull-right">
+    Сбросить фильтры
+</button>
+<form name="PostForm"
+      asp-action="ShowMailList"
+      asp-route-sortState="@Model.SortViewModel.Current">
+
+    <table name="Table"
+           class="table table-striped table-bordered table-sm">
+        <thead>
+            <tr>
+                <th width="60px" class="th-sm">
+                    <a asp-action="ShowMailList"
+                       asp-all-route-data='new Dictionary<string, string> {
+                           {"CountryFilter", @Model.FilterViewModel.CountryFilter},
+                           {"CityFilter", @Model.FilterViewModel.CityFilter},
+                           {"StreetFilter", @Model.FilterViewModel.StreetFilter},
+                           {"HouseNumberFilter", @Model.FilterViewModel.HouseNumberFilter},
+                           {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
+                           {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
+                       }'
+                       asp-route-sortState="@(Model.SortViewModel.IdSort)">
+                        № п/п
+                    </a>
+                </th>
+                <th class="th-sm">
+                    <a asp-action="ShowMailList"
+                       asp-all-route-data='new Dictionary<string, string> {
+                           {"CountryFilter", @Model.FilterViewModel.CountryFilter},
+                           {"CityFilter", @Model.FilterViewModel.CityFilter},
+                           {"StreetFilter", @Model.FilterViewModel.StreetFilter},
+                           {"HouseNumberFilter", @Model.FilterViewModel.HouseNumberFilter},
+                           {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
+                           {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
+                       }'
+                       asp-route-sortState="@(Model.SortViewModel.CountrySort)">
+                        Страна
+                    </a>
+                </th>
+                <th class="th-sm">
+                    <a asp-action="ShowMailList"
+                       asp-all-route-data='new Dictionary<string, string>
+                       {
+                           {"CountryFilter", @Model.FilterViewModel.CountryFilter},
+                           {"CityFilter", @Model.FilterViewModel.CityFilter},
+                           {"StreetFilter", @Model.FilterViewModel.StreetFilter},
+                           {"HouseNumberFilter", @Model.FilterViewModel.HouseNumberFilter},
+                           {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
+                           {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
+                       }'
+                       asp-route-sortState="@(Model.SortViewModel.CitySort)">
+                        Город
+                    </a>
+                </th>
+                <th class="th-sm">
+                    <a asp-action="ShowMailList"
+                       asp-all-route-data='new Dictionary<string, string> {
+                           {"CountryFilter", @Model.FilterViewModel.CountryFilter},
+                           {"CityFilter", @Model.FilterViewModel.CityFilter},
+                           {"StreetFilter", @Model.FilterViewModel.StreetFilter},
+                           {"HouseNumberFilter", @Model.FilterViewModel.HouseNumberFilter},
+                           {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
+                           {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
+                       }'
+                       asp-route-sortState="@(Model.SortViewModel.StreetSort)">
+                        Улица
+                    </a>
+                </th>
+                <th class="th-sm">
+                    <a asp-action="ShowMailList"
+                       asp-all-route-data='new Dictionary<string, string> {
+                           {"CountryFilter", @Model.FilterViewModel.CountryFilter},
+                           {"CityFilter", @Model.FilterViewModel.CityFilter},
+                           {"StreetFilter", @Model.FilterViewModel.StreetFilter},
+                           {"HouseNumberFilter", @Model.FilterViewModel.HouseNumberFilter},
+                           {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
+                           {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
+                       }'
+                       asp-route-sortState="@(Model.SortViewModel.HouseNumberSort)">
+                        Номер дома
+                    </a>
+                </th>
+                <th class="th-sm">
+                    <a asp-action="ShowMailList"
+                       asp-all-route-data='new Dictionary<string, string> {
+                           {"CountryFilter", @Model.FilterViewModel.CountryFilter},
+                           {"CityFilter", @Model.FilterViewModel.CityFilter},
+                           {"StreetFilter", @Model.FilterViewModel.StreetFilter},
+                           {"HouseNumberFilter", @Model.FilterViewModel.HouseNumberFilter},
+                           {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
+                           {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
+                       }'
+                       asp-route-sortState="@(Model.SortViewModel.MailIndexSort)">
+                        Почтовый индекс
+                    </a>
+                </th>
+                <th width="200px" class="th-sm">
+                    <a asp-action="ShowMailList"
+                       asp-all-route-data='new Dictionary<string, string> {
+                           {"CountryFilter", @Model.FilterViewModel.CountryFilter},
+                           {"CityFilter", @Model.FilterViewModel.CityFilter},
+                           {"StreetFilter", @Model.FilterViewModel.StreetFilter},
+                           {"HouseNumberFilter", @Model.FilterViewModel.HouseNumberFilter},
+                           {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
+                           {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
+                       }'
+                       asp-route-sortState="@(Model.SortViewModel.DateTimeSort)">
+                        Дата/Время регистрации
+                    </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th></th>
+                <th onchange="PostForm.submit()">
+                    @Html.TextBox("CountryFilter", Model.FilterViewModel.CountryFilter, htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th onchange="PostForm.submit()">
+                    @Html.TextBox("CityFilter", Model.FilterViewModel.CityFilter, htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th onchange="PostForm.submit()">
+                    @Html.TextBox("StreetFilter", Model.FilterViewModel.StreetFilter, htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th onchange="PostForm.submit()">
+                    @Html.TextBox("HouseNumberFilter", Model.FilterViewModel.HouseNumberFilter, htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th onchange="PostForm.submit()">
+                    @Html.TextBox("MailIndexFilter", Model.FilterViewModel.MailIndexFilter, htmlAttributes: new { @class = "form-control" })
+                </th>
+                <th onchange="PostForm.submit()">
+                    @Html.TextBox("DateTimeFilter", Model.FilterViewModel.DateTimeFilter, htmlAttributes: new { @class = "form-control" })
+                </th>
+            </tr>
+            @RenderBody()
+        </tbody>
+    </table>
+</form>
