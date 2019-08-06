@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MailManager.ViewModels
 {
-    public class MailListFilterViewModel
+    public class FilterViewModel
     {
         public string CountryFilter { get; set; }
         public string CityFilter { get; set; }

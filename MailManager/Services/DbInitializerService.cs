@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MailManager.Models;
 
-namespace MailManager.Models
+namespace MailManager.Services
 {
-    public class MailsDbInitializer
+    public class DbInitializerService
     {
-
         private const int citiesPerCountry = 2;
 
         private string[] countries =

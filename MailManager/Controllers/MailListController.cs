@@ -12,21 +12,16 @@ namespace MailManager.Controllers
 {
     public class MailListController : Controller
     {
-        private MailListViewModel mailListViewModel;
-        private List<Mail> mailList;
+        private readonly List<Mail> mailList;
 
         public MailListController(MailsContext context)
         {
             mailList = context.Mails.ToList();
-            this.mailListViewModel = (new MailListViewerService()).CreateViewModel(mailList); 
         }
 
-        public ActionResult ShowMailList(MailListSortState sortState, MailListFilterViewModel filters)
+        public ActionResult ShowMailList(MailListSortState sortState, FilterViewModel filterVM, int page = 1)
         {
-            mailListViewModel.Mails = (new MailListFilterService()).ApplyFilters(mailListViewModel.Mails, filters);
-            mailListViewModel.Mails = (new MailListSortService()).SortByColumnId(mailListViewModel.Mails, sortState);
-            mailListViewModel.SortViewModel = new SortViewModel(sortState);
-            mailListViewModel.FilterViewModel = filters;
+            MailListViewModel mailListViewModel = new MailListViewerService().CreateViewModel(mailList, filterVM, sortState, page);
             return View("ShowMailList", mailListViewModel);
         }
     }

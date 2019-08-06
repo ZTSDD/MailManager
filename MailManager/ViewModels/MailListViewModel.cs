@@ -10,6 +10,7 @@ namespace MailManager.ViewModels
     {
         public List<Mail> Mails { get; set; }
         public SortViewModel SortViewModel { get; set; }
-        public MailListFilterViewModel FilterViewModel { get; set; }
+        public FilterViewModel FilterViewModel { get; set; }
+        public PaginationViewModel PaginationViewModel { get; set; }
     }
 }

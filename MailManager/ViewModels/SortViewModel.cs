@@ -17,16 +17,16 @@ namespace MailManager.ViewModels
         public MailListSortState DateTimeSort { get; set; }
         public MailListSortState Current { get; private set; }
 
-        public SortViewModel(MailListSortState sortOrder)
+        public SortViewModel(MailListSortState sortState)
         {
-            IdSort = sortOrder == MailListSortState.Id_A ? MailListSortState.Id_D : MailListSortState.Id_A;
-            CountrySort = sortOrder == MailListSortState.Country_A ? MailListSortState.Country_D : MailListSortState.Country_A;
-            CitySort = sortOrder == MailListSortState.City_A ? MailListSortState.City_D : MailListSortState.City_A;
-            StreetSort = sortOrder == MailListSortState.Street_A ? MailListSortState.Street_D : MailListSortState.Street_A;
-            HouseNumberSort = sortOrder == MailListSortState.HouseNumber_A ? MailListSortState.HouseNumber_D : MailListSortState.HouseNumber_A;
-            MailIndexSort = sortOrder == MailListSortState.MailIndex_A ? MailListSortState.MailIndex_D : MailListSortState.MailIndex_A;
-            DateTimeSort = sortOrder == MailListSortState.DateTime_A ? MailListSortState.DateTime_D : MailListSortState.DateTime_A;
-            Current = sortOrder;
+            IdSort = sortState == MailListSortState.Id_A ? MailListSortState.Id_D : MailListSortState.Id_A;
+            CountrySort = sortState == MailListSortState.Country_A ? MailListSortState.Country_D : MailListSortState.Country_A;
+            CitySort = sortState == MailListSortState.City_A ? MailListSortState.City_D : MailListSortState.City_A;
+            StreetSort = sortState == MailListSortState.Street_A ? MailListSortState.Street_D : MailListSortState.Street_A;
+            HouseNumberSort = sortState == MailListSortState.HouseNumber_A ? MailListSortState.HouseNumber_D : MailListSortState.HouseNumber_A;
+            MailIndexSort = sortState == MailListSortState.MailIndex_A ? MailListSortState.MailIndex_D : MailListSortState.MailIndex_A;
+            DateTimeSort = sortState == MailListSortState.DateTime_A ? MailListSortState.DateTime_D : MailListSortState.DateTime_A;
+            Current = sortState;
         }
     }
 }

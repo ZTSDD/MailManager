@@ -10,6 +10,7 @@
 </button>
 <form name="PostForm"
       asp-action="ShowMailList"
+      asp-route-page="@(Model.PaginationViewModel.CurrentPage)"
       asp-route-sortState="@Model.SortViewModel.Current">
 
     <table name="Table"
@@ -26,6 +27,7 @@
                            {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
                            {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
                        }'
+                       asp-route-page="@(Model.PaginationViewModel.CurrentPage)"
                        asp-route-sortState="@(Model.SortViewModel.IdSort)">
                         № п/п
                     </a>
@@ -40,6 +42,7 @@
                            {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
                            {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
                        }'
+                       asp-route-page="@(Model.PaginationViewModel.CurrentPage)"
                        asp-route-sortState="@(Model.SortViewModel.CountrySort)">
                         Страна
                     </a>
@@ -55,6 +58,7 @@
                            {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
                            {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
                        }'
+                       asp-route-page="@(Model.PaginationViewModel.CurrentPage)"
                        asp-route-sortState="@(Model.SortViewModel.CitySort)">
                         Город
                     </a>
@@ -69,6 +73,7 @@
                            {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
                            {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
                        }'
+                       asp-route-page="@(Model.PaginationViewModel.CurrentPage)"
                        asp-route-sortState="@(Model.SortViewModel.StreetSort)">
                         Улица
                     </a>
@@ -83,6 +88,7 @@
                            {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
                            {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
                        }'
+                       asp-route-page="@(Model.PaginationViewModel.CurrentPage)"
                        asp-route-sortState="@(Model.SortViewModel.HouseNumberSort)">
                         Номер дома
                     </a>
@@ -97,6 +103,7 @@
                            {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
                            {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
                        }'
+                       asp-route-page="@(Model.PaginationViewModel.CurrentPage)"
                        asp-route-sortState="@(Model.SortViewModel.MailIndexSort)">
                         Почтовый индекс
                     </a>
@@ -111,6 +118,7 @@
                            {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
                            {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
                        }'
+                       asp-route-page="@(Model.PaginationViewModel.CurrentPage)"
                        asp-route-sortState="@(Model.SortViewModel.DateTimeSort)">
                         Дата/Время регистрации
                     </a>
@@ -142,4 +150,40 @@
             @RenderBody()
         </tbody>
     </table>
+    @if (Model.PaginationViewModel.HasPrev)
+    {
+        <a asp-action="ShowMailList"
+           asp-all-route-data='new Dictionary<string, string> {
+                           {"CountryFilter", @Model.FilterViewModel.CountryFilter},
+                           {"CityFilter", @Model.FilterViewModel.CityFilter},
+                           {"StreetFilter", @Model.FilterViewModel.StreetFilter},
+                           {"HouseNumberFilter", @Model.FilterViewModel.HouseNumberFilter},
+                           {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
+                           {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
+                       }'
+           asp-route-page="@(Model.PaginationViewModel.CurrentPage - 1)"
+           asp-route-sortState="@(Model.SortViewModel.Current)"
+           class="btn btn-default btn">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Назад
+        </a>
+    }
+    @if (Model.PaginationViewModel.HasNext)
+    {
+        <a asp-action="ShowMailList"
+           asp-all-route-data='new Dictionary<string, string> {
+                           {"CountryFilter", @Model.FilterViewModel.CountryFilter},
+                           {"CityFilter", @Model.FilterViewModel.CityFilter},
+                           {"StreetFilter", @Model.FilterViewModel.StreetFilter},
+                           {"HouseNumberFilter", @Model.FilterViewModel.HouseNumberFilter},
+                           {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
+                           {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
+                       }'
+           asp-route-page="@(Model.PaginationViewModel.CurrentPage + 1)"
+           asp-route-sortState="@(Model.SortViewModel.Current)"
+           class="btn btn-default btn">
+            Вперед
+            <i class="glyphicon glyphicon-chevron-right"></i>
+        </a>
+    }
 </form>

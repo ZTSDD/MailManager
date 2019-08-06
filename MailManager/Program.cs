@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using MailManager.Services;
 using MailManager.Models;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
@@ -25,7 +26,7 @@ namespace MailManager
                 try
                 {
                     var context = services.GetRequiredService<MailsContext>();
-                    MailsDbInitializer mailsDbInitializer = new MailsDbInitializer();
+                    DbInitializerService mailsDbInitializer = new DbInitializerService();
                     mailsDbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
