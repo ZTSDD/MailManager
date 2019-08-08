@@ -12,17 +12,27 @@ namespace MailManager.Controllers
 {
     public class MailListController : Controller
     {
-        private readonly List<Mail> mailList;
+        private readonly MailsContext context;
 
         public MailListController(MailsContext context)
         {
-            mailList = context.Mails.ToList();
+            this.context = context;
         }
 
         public ActionResult ShowMailList(MailListSortState sortState, FilterViewModel filterVM, int page = 1)
         {
-            MailListViewModel mailListViewModel = new MailListViewerService().CreateViewModel(mailList, filterVM, sortState, page);
-            return View("ShowMailList", mailListViewModel);
+            Task<MailListViewModel> mailListViewModel = CreateViewModelAsync(sortState, filterVM, page);
+                //new MailListViewerService().CreateViewModel(context, filterVM, sortState, page)
+            return View("ShowMailList", mailListViewModel.Result);
         }
+
+        private async Task<MailListViewModel> CreateViewModelAsync(MailListSortState sortState, FilterViewModel filterVM, int page = 1)
+        {
+            return await Task.Run( 
+                () => 
+                    new MailListViewerService()
+                        .CreateViewModel(context, filterVM, sortState, page));
+        }
+
     }
 }

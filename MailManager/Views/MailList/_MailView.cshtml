@@ -150,8 +150,27 @@
             @RenderBody()
         </tbody>
     </table>
-    @if (Model.PaginationViewModel.HasPrev)
-    {
+    @{
+        string firstBtnEnabled = Model.PaginationViewModel.CurrentPage != 1 ? "enabled" : "disabled";
+        <a asp-action="ShowMailList"
+           asp-all-route-data='new Dictionary<string, string> {
+                           {"CountryFilter", @Model.FilterViewModel.CountryFilter},
+                           {"CityFilter", @Model.FilterViewModel.CityFilter},
+                           {"StreetFilter", @Model.FilterViewModel.StreetFilter},
+                           {"HouseNumberFilter", @Model.FilterViewModel.HouseNumberFilter},
+                           {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
+                           {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
+                       }'
+           asp-route-page="1"
+           asp-route-sortState="@(Model.SortViewModel.Current)"
+           class="btn btn-default btn @firstBtnEnabled">
+            <i class="glyphicon glyphicon-triangle-left"></i>
+            Первая
+        </a>
+    }
+    @{
+        string prevBtnEnabled = Model.PaginationViewModel.CurrentPage != 1 ? "enabled" : "disabled";
+
         <a asp-action="ShowMailList"
            asp-all-route-data='new Dictionary<string, string> {
                            {"CountryFilter", @Model.FilterViewModel.CountryFilter},
@@ -163,13 +182,67 @@
                        }'
            asp-route-page="@(Model.PaginationViewModel.CurrentPage - 1)"
            asp-route-sortState="@(Model.SortViewModel.Current)"
-           class="btn btn-default btn">
+           class="btn btn-default btn @prevBtnEnabled">
             <i class="glyphicon glyphicon-chevron-left"></i>
             Назад
         </a>
+
     }
-    @if (Model.PaginationViewModel.HasNext)
-    {
+    @{
+        int prevPagesToShow =
+            Math.Clamp(Model.PaginationViewModel.CurrentPage - 1, 0, 5);
+        if (prevPagesToShow != 0)
+        {
+            for (int i = prevPagesToShow; i > 0; i--)
+            {
+                <a asp-action="ShowMailList"
+                   asp-all-route-data='new Dictionary<string, string> {
+                           {"CountryFilter", @Model.FilterViewModel.CountryFilter},
+                           {"CityFilter", @Model.FilterViewModel.CityFilter},
+                           {"StreetFilter", @Model.FilterViewModel.StreetFilter},
+                           {"HouseNumberFilter", @Model.FilterViewModel.HouseNumberFilter},
+                           {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
+                           {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
+                       }'
+                   asp-route-page="@(Model.PaginationViewModel.CurrentPage - i)"
+                   asp-route-sortState="@(Model.SortViewModel.Current)"
+                   class="btn btn-default btn">
+                    @(Model.PaginationViewModel.CurrentPage - i)
+                </a>
+            }
+        }
+    }
+    @{
+        <a class="btn btn-default btn">
+            <u>@(Model.PaginationViewModel.CurrentPage)</u>
+        </a>
+    }
+    @{
+        int nextPagesToShow =
+            Math.Clamp(Model.PaginationViewModel.TotalPages - Model.PaginationViewModel.CurrentPage, 0, 5);
+        if (nextPagesToShow != 0)
+        {
+            for (int i = 1; i <= nextPagesToShow; i++)
+            {
+                <a asp-action="ShowMailList"
+                   asp-all-route-data='new Dictionary<string, string> {
+                           {"CountryFilter", @Model.FilterViewModel.CountryFilter},
+                           {"CityFilter", @Model.FilterViewModel.CityFilter},
+                           {"StreetFilter", @Model.FilterViewModel.StreetFilter},
+                           {"HouseNumberFilter", @Model.FilterViewModel.HouseNumberFilter},
+                           {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
+                           {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
+                       }'
+                   asp-route-page="@(Model.PaginationViewModel.CurrentPage + i)"
+                   asp-route-sortState="@(Model.SortViewModel.Current)"
+                   class="btn btn-default btn">
+                    @(Model.PaginationViewModel.CurrentPage + i)
+                </a>
+            }
+        }
+    }
+    @{
+        string nextBtnEnabled = Model.PaginationViewModel.CurrentPage != Model.PaginationViewModel.TotalPages ? "enabled" : "disabled";
         <a asp-action="ShowMailList"
            asp-all-route-data='new Dictionary<string, string> {
                            {"CountryFilter", @Model.FilterViewModel.CountryFilter},
@@ -181,9 +254,27 @@
                        }'
            asp-route-page="@(Model.PaginationViewModel.CurrentPage + 1)"
            asp-route-sortState="@(Model.SortViewModel.Current)"
-           class="btn btn-default btn">
+           class="btn btn-default btn @nextBtnEnabled">
             Вперед
             <i class="glyphicon glyphicon-chevron-right"></i>
+        </a>
+    }
+    @{
+        string lastBtnEnabled = Model.PaginationViewModel.CurrentPage != Model.PaginationViewModel.TotalPages ? "enabled" : "disabled";
+        <a asp-action="ShowMailList"
+           asp-all-route-data='new Dictionary<string, string> {
+                           {"CountryFilter", @Model.FilterViewModel.CountryFilter},
+                           {"CityFilter", @Model.FilterViewModel.CityFilter},
+                           {"StreetFilter", @Model.FilterViewModel.StreetFilter},
+                           {"HouseNumberFilter", @Model.FilterViewModel.HouseNumberFilter},
+                           {"MailIndexFilter", @Model.FilterViewModel.MailIndexFilter},
+                           {"DateTimeFilter", @Model.FilterViewModel.DateTimeFilter}
+                       }'
+           asp-route-page="@(Model.PaginationViewModel.TotalPages)"
+           asp-route-sortState="@(Model.SortViewModel.Current)"
+           class="btn btn-default btn @lastBtnEnabled">
+            Последняя
+            <i class="glyphicon glyphicon-triangle-right"></i>
         </a>
     }
 </form>

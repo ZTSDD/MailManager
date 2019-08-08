@@ -10,7 +10,7 @@ namespace MailManager.Services
 {
     public class SortService
     {
-        public void ApplySorting(ref List<Mail> sourceList, SortViewModel sortVM)
+        public void ApplySorting(ref IQueryable<Mail> sourceList, SortViewModel sortVM)
         {
             // Пречисление MailListSortState содержит для каждого столбца по 2 типа сортировки, 
             // все четные значения - по возрастанию для каждого столбца.
@@ -22,16 +22,14 @@ namespace MailManager.Services
                 sourceList = sourceList
                     .OrderBy(m => m.GetType()
                     .GetProperties()[colId]
-                    .GetValue(m))
-                    .ToList();
+                    .GetValue(m));
             }
             else
             {
                 sourceList = sourceList
                     .OrderByDescending(m => m.GetType()
                     .GetProperties()[colId]
-                    .GetValue(m))
-                    .ToList();
+                    .GetValue(m));
             }
         }
     }

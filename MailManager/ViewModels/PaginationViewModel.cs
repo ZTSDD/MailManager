@@ -22,7 +22,7 @@ namespace MailManager.ViewModels
             }
             CurrentPage = currentPage;
             PageSize = pageSize;
-            TotalPages = (listSize / pageSize + 1);
+            TotalPages = (int)Math.Ceiling((double)(listSize / pageSize));
         }
     }
 }

@@ -9,12 +9,11 @@ namespace MailManager.Services
 {
     public class PaginationService
     {
-        public void ApplyPagination(ref List<Mail> mailList, PaginationViewModel paginationVM)
+        public void ApplyPagination(ref IQueryable<Mail> mailList, PaginationViewModel paginationVM)
         {
             mailList = mailList
                 .Skip((paginationVM.CurrentPage - 1) * paginationVM.PageSize)
-                .Take(paginationVM.PageSize)
-                .ToList();
+                .Take(paginationVM.PageSize);
         }
     }
 }

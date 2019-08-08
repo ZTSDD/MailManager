@@ -10,7 +10,7 @@ namespace MailManager.Services
 {
     public class FilterService
     {
-        public void ApplyFilters(ref List<Mail> mails, FilterViewModel filters)
+        public void ApplyFilters(ref IQueryable<Mail> mails, FilterViewModel filters)
         {
             int colId = 1;
             foreach (var filter in filters.GetType().GetProperties())
@@ -23,7 +23,7 @@ namespace MailManager.Services
             }
         }
 
-        private List<Mail> ApplyFilter(List<Mail> sourceList, int id, string filter)
+        private IQueryable<Mail> ApplyFilter(IQueryable<Mail> sourceList, int id, string filter)
         {
             return sourceList
                 .Where(
@@ -36,8 +36,7 @@ namespace MailManager.Services
                             filter
                         )
                     )
-                )
-                .ToList();
+                );
         }
 
         private bool CheckCondition(string strValue, string filter)
