@@ -4,6 +4,15 @@
 @model MailListViewModel
 <h1>Почтовые адреса</h1>
 
+<form name="ResetForm"
+      asp-action="ShowMailList">
+    <button name="btn"
+            onclick="this.ResetForm.submit()"
+            class="btn btn-secondary pull-right">
+        Сбросить фильтры
+    </button>
+</form>
+
 <form name="PostForm"
       asp-action="ShowMailList"
       asp-route-page=@Model.PaginationViewModel.CurrentPage
@@ -13,11 +22,6 @@
             onclick="this.PostForm.submit()"
             class="btn btn-primary pull-right">
         Применить фильтры
-    </button>
-
-    <button name="btn" type="reset"
-            class="btn btn-secondary pull-right">
-        Сбросить фильтры
     </button>
 
     <table name="Table"
