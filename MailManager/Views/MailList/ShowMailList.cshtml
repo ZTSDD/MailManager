@@ -3,10 +3,11 @@
 }
 
 @{
+    int i = 2;
     foreach (var mail in Model.Mails)
     {
         <tr>
-            <td>@mail.Id</td>
+            <td>@(i++)</td>
             <td>@mail.Country</td>
             <td>@mail.City</td>
             <td>@mail.Street</td>

@@ -15,7 +15,7 @@ namespace MailManager.ViewModels
 
         public PaginationViewModel(int listSize, int pageSize, int currentPage)
         {
-            int maxPage = listSize / pageSize + 1;
+            int maxPage = Math.Max(1, (int)Math.Ceiling((double)(listSize / pageSize)));
             if (currentPage > maxPage)
             {
                 currentPage = Math.Clamp(currentPage, 1, maxPage);

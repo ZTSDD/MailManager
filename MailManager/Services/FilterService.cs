@@ -25,18 +25,9 @@ namespace MailManager.Services
 
         private IQueryable<Mail> ApplyFilter(IQueryable<Mail> sourceList, int id, string filter)
         {
-            return sourceList
-                .Where(
-                    m => (
-                        CheckCondition(
-                            m.GetType()
-                                .GetProperties()[id]
-                                .GetValue(m)
-                                .ToString(),
-                            filter
-                        )
-                    )
-                );
+            return sourceList.Where(m => (CheckCondition(
+                m.GetType().GetProperties()[id].GetValue(m).ToString(),
+                filter)));
         }
 
         private bool CheckCondition(string strValue, string filter)
@@ -74,10 +65,9 @@ namespace MailManager.Services
         // Для проверки принадлежности интервалу
         private bool ContainsValue(string val, string beg, string end)
         {
-            int begInterval;
-            int endInterval;
-            int value;
-            if(int.TryParse(beg, out begInterval) && int.TryParse(end, out endInterval) && int.TryParse(val, out value))
+            if (int.TryParse(beg, out int begInterval) &&
+                int.TryParse(end, out int endInterval) &&
+                int.TryParse(val, out int value))
             {
                 return ((value >= begInterval) && (value <= endInterval));
             }
@@ -87,14 +77,12 @@ namespace MailManager.Services
         // Для проверки равнозначности значений 
         private bool ContainsValue(string firstVal, string secondVal)
         {
-            int first;
-            int second;
-            if (int.TryParse(firstVal, out first) && int.TryParse(secondVal, out second))
+            if (int.TryParse(firstVal, out int first) &&
+                int.TryParse(secondVal, out int second))
             {
                 return first == second;
             }
             return false;
         }
-
     }
 }

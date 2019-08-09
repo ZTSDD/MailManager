@@ -19,20 +19,25 @@ namespace MailManager.Controllers
             this.context = context;
         }
 
-        public ActionResult ShowMailList(MailListSortState sortState, FilterViewModel filterVM, int page = 1)
+        public ActionResult ShowMailList(
+            MailListSortState sortState, 
+            FilterViewModel filterVM, 
+            int page = 1, 
+            int pageSize = 5)
         {
-            Task<MailListViewModel> mailListViewModel = CreateViewModelAsync(sortState, filterVM, page);
-                //new MailListViewerService().CreateViewModel(context, filterVM, sortState, page)
+            Task<MailListViewModel> mailListViewModel = 
+                CreateViewModelAsync(sortState, filterVM, page, pageSize);
             return View("ShowMailList", mailListViewModel.Result);
         }
 
-        private async Task<MailListViewModel> CreateViewModelAsync(MailListSortState sortState, FilterViewModel filterVM, int page = 1)
+        private async Task<MailListViewModel> CreateViewModelAsync(
+            MailListSortState sortState, 
+            FilterViewModel filterVM, 
+            int page = 1, 
+            int pageSize = 5)
         {
-            return await Task.Run( 
-                () => 
-                    new MailListViewerService()
-                        .CreateViewModel(context, filterVM, sortState, page));
+            return await Task.Run(() => new MailListViewerService()
+                .CreateViewModel(context, filterVM, sortState, page, pageSize));
         }
-
     }
 }
